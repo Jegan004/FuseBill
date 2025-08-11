@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "225823649226",
+    "project_id": "fusepay-project",
+    "storage_bucket": "fusepay-project.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:225823649226:android:319cb62f39fe55d796b333",
+        "android_client_info": {
+          "package_name": "com.example.fusepay_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAO5MJeXxqK6ISUjK1VcDgMizpNL8McttM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
