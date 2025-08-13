@@ -74,7 +74,7 @@ class NotificationsScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(14),
                   ),
                   elevation: 6,
-                  shadowColor: Colors.deepPurple.withOpacity(0.13),
+                  shadowColor: Colors.deepPurple.withValues(alpha: 0.13),
                   color: Colors.orange.shade50,
                   child: ListTile(
                     leading: CircleAvatar(

@@ -66,7 +66,7 @@ class _SplashScreenState extends State<SplashScreen>
             duration: const Duration(milliseconds: 900),
             builder: (context, value, child) {
               return Opacity(
-                opacity: value,
+                opacity: value.clamp(0.0, 1.0),
                 child: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(

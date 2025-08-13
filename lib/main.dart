@@ -56,11 +56,12 @@ class MyApp extends StatelessWidget {
       },
       onGenerateRoute: (settings) {
         if (settings.name == '/payments') {
-          final args = settings.arguments as Map<String, String>;
+          final args = settings.arguments as Map<String, dynamic>;
           return MaterialPageRoute(
             builder: (context) => PaymentScreen(
               serviceName: args['serviceName'] ?? '',
               amount: args['amount'] ?? '',
+              subscriptionId: args['subscriptionId'] ?? '',
             ),
           );
         }

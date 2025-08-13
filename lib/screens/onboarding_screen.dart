@@ -12,9 +12,9 @@ class OnboardingScreen extends StatelessWidget {
       body: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset('images/onboarding_bg.jpg', fit: BoxFit.cover),
+            child: Image.asset('images/onboarding_bg.png', fit: BoxFit.cover),
           ),
-          Container(color: Colors.black.withOpacity(0.6)),
+          Container(color: Colors.black.withValues(alpha: 0.6)),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 50),
             child: Center(
@@ -27,7 +27,7 @@ class OnboardingScreen extends StatelessWidget {
                     curve: Curves.easeOutBack,
                     builder: (context, value, child) {
                       return Opacity(
-                        opacity: value,
+                        opacity: value.clamp(0.0, 1.0),
                         child: Transform.scale(
                           scale: 0.8 + 0.2 * value,
                           child: child,
@@ -47,7 +47,7 @@ class OnboardingScreen extends StatelessWidget {
                     curve: Curves.easeIn,
                     builder: (context, value, child) {
                       return Opacity(
-                        opacity: value,
+                        opacity: value.clamp(0.0, 1.0),
                         child: Transform.translate(
                           offset: Offset(0, 40 * (1 - value)),
                           child: child,
@@ -63,7 +63,9 @@ class OnboardingScreen extends StatelessWidget {
                         letterSpacing: 1.2,
                         shadows: [
                           Shadow(
-                            color: Colors.deepPurple.shade900.withOpacity(0.4),
+                            color: Colors.deepPurple.shade900.withValues(
+                              alpha: 0.4,
+                            ),
                             blurRadius: 12,
                             offset: const Offset(0, 4),
                           ),
@@ -79,7 +81,7 @@ class OnboardingScreen extends StatelessWidget {
                     curve: Curves.easeIn,
                     builder: (context, value, child) {
                       return Opacity(
-                        opacity: value,
+                        opacity: value.clamp(0.0, 1.0),
                         child: Transform.translate(
                           offset: Offset(0, 20 * (1 - value)),
                           child: child,
@@ -103,7 +105,7 @@ class OnboardingScreen extends StatelessWidget {
                     curve: Curves.easeIn,
                     builder: (context, value, child) {
                       return Opacity(
-                        opacity: value,
+                        opacity: value.clamp(0.0, 1.0),
                         child: Transform.scale(scale: value, child: child),
                       );
                     },
@@ -125,8 +127,8 @@ class OnboardingScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(30),
                             ),
                             elevation: 8,
-                            shadowColor: Colors.deepPurpleAccent.withOpacity(
-                              0.3,
+                            shadowColor: Colors.deepPurpleAccent.withValues(
+                              alpha: 0.3,
                             ),
                           ),
                           onPressed: () {

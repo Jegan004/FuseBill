@@ -147,7 +147,9 @@ class SubscriptionScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(18),
                           ),
                           elevation: 8,
-                          shadowColor: Colors.deepPurple.withOpacity(0.13),
+                          shadowColor: Colors.deepPurple.withValues(
+                            alpha: 0.13,
+                          ),
                           color: Colors.deepPurple.shade50,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
@@ -225,6 +227,7 @@ class SubscriptionScreen extends StatelessWidget {
                                               builder: (_) => PaymentScreen(
                                                 serviceName: name,
                                                 amount: price,
+                                                subscriptionId: doc.id,
                                               ),
                                             ),
                                           );
@@ -244,6 +247,8 @@ class SubscriptionScreen extends StatelessWidget {
                                           "Pay",
                                           style: GoogleFonts.poppins(
                                             fontSize: 12,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w600,
                                           ),
                                         ),
                                       ),
@@ -265,12 +270,13 @@ class SubscriptionScreen extends StatelessWidget {
           : FloatingActionButton.extended(
               backgroundColor: Colors.deepPurple,
               elevation: 5,
-              icon: const Icon(Icons.add),
+              icon: const Icon(Icons.add, color: Colors.white),
               label: Text(
                 "Add",
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w600,
                   letterSpacing: 0.5,
+                  color: Colors.white,
                 ),
               ),
               onPressed: () {

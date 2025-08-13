@@ -59,7 +59,7 @@ class ProfileScreen extends StatelessWidget {
             duration: const Duration(milliseconds: 900),
             builder: (context, value, child) {
               return Opacity(
-                opacity: value,
+                opacity: value.clamp(0.0, 1.0),
                 child: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -82,7 +82,7 @@ class ProfileScreen extends StatelessWidget {
                   curve: Curves.easeOutBack,
                   builder: (context, value, child) {
                     return Opacity(
-                      opacity: value,
+                      opacity: value.clamp(0.0, 1.0),
                       child: Transform.scale(
                         scale: 0.8 + 0.2 * value,
                         child: child,
@@ -108,7 +108,7 @@ class ProfileScreen extends StatelessWidget {
                     duration: const Duration(milliseconds: 1000),
                     builder: (context, value, child) {
                       return Opacity(
-                        opacity: value,
+                        opacity: value.clamp(0.0, 1.0),
                         child: Transform.translate(
                           offset: Offset(0, 20 * (1 - value)),
                           child: child,
@@ -134,7 +134,7 @@ class ProfileScreen extends StatelessWidget {
                   curve: Curves.easeIn,
                   builder: (context, value, child) {
                     return Opacity(
-                      opacity: value,
+                      opacity: value.clamp(0.0, 1.0),
                       child: Transform.translate(
                         offset: Offset(0, 20 * (1 - value)),
                         child: child,
@@ -223,7 +223,7 @@ class ProfileScreen extends StatelessWidget {
                   curve: Curves.easeIn,
                   builder: (context, value, child) {
                     return Opacity(
-                      opacity: value,
+                      opacity: value.clamp(0.0, 1.0),
                       child: Transform.scale(scale: value, child: child),
                     );
                   },
@@ -241,7 +241,7 @@ class ProfileScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       elevation: 8,
-                      shadowColor: Colors.redAccent.withOpacity(0.2),
+                      shadowColor: Colors.redAccent.withValues(alpha: 0.2),
                       textStyle: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,

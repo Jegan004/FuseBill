@@ -67,7 +67,7 @@ class _AddSubscriptionScreenState extends State<AddSubscriptionScreen> {
             duration: const Duration(milliseconds: 900),
             builder: (context, value, child) {
               return Opacity(
-                opacity: value,
+                opacity: value.clamp(0.0, 1.0),
                 child: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -98,7 +98,7 @@ class _AddSubscriptionScreenState extends State<AddSubscriptionScreen> {
                         curve: Curves.easeOutBack,
                         builder: (context, value, child) {
                           return Opacity(
-                            opacity: value,
+                            opacity: value.clamp(0.0, 1.0),
                             child: Transform.scale(
                               scale: 0.8 + 0.2 * value,
                               child: child,
@@ -118,7 +118,7 @@ class _AddSubscriptionScreenState extends State<AddSubscriptionScreen> {
                         curve: Curves.easeIn,
                         builder: (context, value, child) {
                           return Opacity(
-                            opacity: value,
+                            opacity: value.clamp(0.0, 1.0),
                             child: Transform.translate(
                               offset: Offset(0, 30 * (1 - value)),
                               child: child,
@@ -152,7 +152,7 @@ class _AddSubscriptionScreenState extends State<AddSubscriptionScreen> {
                         curve: Curves.easeIn,
                         builder: (context, value, child) {
                           return Opacity(
-                            opacity: value,
+                            opacity: value.clamp(0.0, 1.0),
                             child: Transform.translate(
                               offset: Offset(0, 20 * (1 - value)),
                               child: child,
@@ -189,7 +189,7 @@ class _AddSubscriptionScreenState extends State<AddSubscriptionScreen> {
                         curve: Curves.easeIn,
                         builder: (context, value, child) {
                           return Opacity(
-                            opacity: value,
+                            opacity: value.clamp(0.0, 1.0),
                             child: Transform.translate(
                               offset: Offset(0, 15 * (1 - value)),
                               child: child,
@@ -255,7 +255,7 @@ class _AddSubscriptionScreenState extends State<AddSubscriptionScreen> {
                         curve: Curves.easeIn,
                         builder: (context, value, child) {
                           return Opacity(
-                            opacity: value,
+                            opacity: value.clamp(0.0, 1.0),
                             child: Transform.scale(scale: value, child: child),
                           );
                         },
@@ -288,8 +288,8 @@ class _AddSubscriptionScreenState extends State<AddSubscriptionScreen> {
                               borderRadius: BorderRadius.circular(30),
                             ),
                             elevation: 8,
-                            shadowColor: Colors.deepPurpleAccent.withOpacity(
-                              0.3,
+                            shadowColor: Colors.deepPurpleAccent.withValues(
+                              alpha: 0.3,
                             ),
                           ),
                           onPressed: loading ? null : _addSubscription,

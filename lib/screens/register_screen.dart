@@ -50,7 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             duration: const Duration(milliseconds: 1200),
             builder: (context, value, child) {
               return Opacity(
-                opacity: value,
+                opacity: value.clamp(0.0, 1.0),
                 child: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -80,7 +80,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       curve: Curves.easeOutBack,
                       builder: (context, value, child) {
                         return Opacity(
-                          opacity: value,
+                          opacity: value.clamp(0.0, 1.0),
                           child: Transform.scale(
                             scale: 0.8 + 0.2 * value,
                             child: child,
@@ -100,7 +100,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       curve: Curves.easeIn,
                       builder: (context, value, child) {
                         return Opacity(
-                          opacity: value,
+                          opacity: value.clamp(0.0, 1.0),
                           child: Transform.translate(
                             offset: Offset(0, 30 * (1 - value)),
                             child: child,
@@ -131,7 +131,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       curve: Curves.easeIn,
                       builder: (context, value, child) {
                         return Opacity(
-                          opacity: value,
+                          opacity: value.clamp(0.0, 1.0),
                           child: Transform.translate(
                             offset: Offset(0, 20 * (1 - value)),
                             child: child,
@@ -163,7 +163,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       curve: Curves.easeIn,
                       builder: (context, value, child) {
                         return Opacity(
-                          opacity: value,
+                          opacity: value.clamp(0.0, 1.0),
                           child: Transform.translate(
                             offset: Offset(0, 20 * (1 - value)),
                             child: child,
@@ -195,7 +195,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       curve: Curves.easeIn,
                       builder: (context, value, child) {
                         return Opacity(
-                          opacity: value,
+                          opacity: value.clamp(0.0, 1.0),
                           child: Transform.scale(scale: value, child: child),
                         );
                       },
@@ -239,7 +239,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       curve: Curves.easeIn,
                       builder: (context, value, child) {
                         return Opacity(
-                          opacity: value,
+                          opacity: value.clamp(0.0, 1.0),
                           child: Transform.translate(
                             offset: Offset(0, 10 * (1 - value)),
                             child: child,
