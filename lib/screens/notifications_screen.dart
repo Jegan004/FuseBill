@@ -6,6 +6,13 @@ import 'package:google_fonts/google_fonts.dart';
 class NotificationsScreen extends StatelessWidget {
   const NotificationsScreen({super.key});
 
+  Future<void> _deleteAlert(String docId) async {
+    await FirebaseFirestore.instance
+        .collection('subscriptions')
+        .doc(docId)
+        .delete();
+  }
+
   @override
   Widget build(BuildContext context) {
     final subscriptionsRef = FirebaseFirestore.instance.collection(
@@ -14,9 +21,13 @@ class NotificationsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           "Alerts",
-          style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
         ),
         backgroundColor: Colors.deepPurple,
       ),
@@ -53,9 +64,16 @@ class NotificationsScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             itemCount: upcoming.length,
             itemBuilder: (context, index) {
-              final data = upcoming[index].data() as Map<String, dynamic>;
+              final doc = upcoming[index];
+              final data = doc.data() as Map<String, dynamic>;
 
-              // Animation: Fade in + Slide from right
+              // Format date to show only date, not time
+              String formattedDate = "N/A";
+              try {
+                final date = DateFormat("yyyy-MM-dd").parse(data['nextDue']);
+                formattedDate = DateFormat('dd MMM yyyy').format(date);
+              } catch (_) {}
+
               return TweenAnimationBuilder<double>(
                 tween: Tween(begin: 0.0, end: 1.0),
                 duration: Duration(milliseconds: 400 + index * 100),
@@ -68,41 +86,55 @@ class NotificationsScreen extends StatelessWidget {
                     ),
                   );
                 },
-                child: Card(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
+                child: Dismissible(
+                  key: Key(doc.id),
+                  direction: DismissDirection.endToStart,
+                  background: Container(
+                    alignment: Alignment.centerRight,
+                    padding: const EdgeInsets.only(right: 24),
+                    color: Colors.redAccent,
+                    child: const Icon(Icons.delete, color: Colors.white),
                   ),
-                  elevation: 6,
-                  shadowColor: Colors.deepPurple.withValues(alpha: 0.13),
-                  color: Colors.orange.shade50,
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.orange.shade100,
-                      child: Icon(
-                        Icons.notifications_active_rounded,
-                        color: Colors.orange,
-                      ),
+                  // Remove confirmDismiss for instant delete
+                  onDismissed: (_) async {
+                    await _deleteAlert(doc.id);
+                  },
+                  child: Card(
+                    margin: const EdgeInsets.only(bottom: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
                     ),
-                    title: Text(
-                      data['name'] ?? "Unknown Subscription",
-                      style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.deepPurple.shade900,
+                    elevation: 6,
+                    shadowColor: Colors.deepPurple.withValues(alpha: 0.13),
+                    color: Colors.orange.shade50,
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.orange.shade100,
+                        child: Icon(
+                          Icons.notifications_active_rounded,
+                          color: Colors.orange,
+                        ),
                       ),
-                    ),
-                    subtitle: Text(
-                      "Due on: ${data['nextDue']}",
-                      style: GoogleFonts.poppins(
-                        color: Colors.deepPurple.shade700,
-                        fontWeight: FontWeight.w400,
+                      title: Text(
+                        data['name'] ?? "Unknown Subscription",
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.deepPurple.shade900,
+                        ),
                       ),
-                    ),
-                    trailing: Text(
-                      data['price'] ?? "",
-                      style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.deepPurple,
+                      subtitle: Text(
+                        "Due on: $formattedDate",
+                        style: GoogleFonts.poppins(
+                          color: Colors.deepPurple.shade700,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      trailing: Text(
+                        "₹${data['price'] ?? ""}",
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurple,
+                        ),
                       ),
                     ),
                   ),
