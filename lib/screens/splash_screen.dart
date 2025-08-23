@@ -58,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen>
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.deepPurpleAccent,
       body: Stack(
         children: [
           TweenAnimationBuilder<double>(
@@ -71,9 +71,9 @@ class _SplashScreenState extends State<SplashScreen>
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Colors.deepPurple.shade100,
-                        Colors.deepPurple.shade50,
-                        Colors.white,
+                        Colors.deepPurple.shade700,
+                        Colors.deepPurple.shade500,
+                        Colors.deepPurple.shade200,
                       ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -90,7 +90,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ScaleTransition(
                   scale: _logoAnim,
                   child: Image.asset(
-                    'images/logo.png',
+                    'images/Image.png',
                     width: size.width * 0.4,
                   ),
                 ),
@@ -102,11 +102,11 @@ class _SplashScreenState extends State<SplashScreen>
                     style: GoogleFonts.montserrat(
                       fontSize: size.width * 0.07,
                       fontWeight: FontWeight.bold,
-                      color: Colors.deepPurple,
+                      color: const Color.fromARGB(255, 126, 78, 237),
                       letterSpacing: 2,
                       shadows: [
                         Shadow(
-                          color: Colors.deepPurple.shade100,
+                          color: const Color.fromARGB(255, 194, 159, 255),
                           blurRadius: 12,
                           offset: const Offset(0, 4),
                         ),

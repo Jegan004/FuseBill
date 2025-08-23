@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,7 +15,16 @@ class OnboardingScreen extends StatelessWidget {
           Positioned.fill(
             child: Image.asset('images/onboarding_bg.png', fit: BoxFit.cover),
           ),
-          Container(color: Colors.black.withValues(alpha: 0.6)),
+          // Enhanced overlay: lighter and with blur for better text contrast
+          Positioned.fill(
+            child: Container(
+              color: Colors.black.withOpacity(0.35),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+                child: Container(color: Colors.transparent),
+              ),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 50),
             child: Center(
@@ -63,10 +73,8 @@ class OnboardingScreen extends StatelessWidget {
                         letterSpacing: 1.2,
                         shadows: [
                           Shadow(
-                            color: Colors.deepPurple.shade900.withValues(
-                              alpha: 0.4,
-                            ),
-                            blurRadius: 12,
+                            color: Colors.deepPurple.shade900.withOpacity(0.7),
+                            blurRadius: 16,
                             offset: const Offset(0, 4),
                           ),
                         ],
@@ -127,8 +135,8 @@ class OnboardingScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(30),
                             ),
                             elevation: 8,
-                            shadowColor: Colors.deepPurpleAccent.withValues(
-                              alpha: 0.3,
+                            shadowColor: Colors.deepPurpleAccent.withOpacity(
+                              0.3,
                             ),
                           ),
                           onPressed: () {
